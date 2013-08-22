@@ -966,7 +966,16 @@ public class Slate extends Activity implements OnTouchListener,
 		// erase all
 		case 12:
 			// below code sets current page to an empty array list of paths
-			pointsToDraw.set(pageNo, new ArrayList<CWPath>());
+			new AlertDialog.Builder(this)
+			.setMessage("Are you sure you want to clear the screen?")
+			.setCancelable(false)
+			.setPositiveButton("Yes",
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							pointsToDraw.set(pageNo, new ArrayList<CWPath>());
+						}
+					}).setNegativeButton("No", null).show();
+			
 			break;
 		// foreground color
 		case 13:
@@ -1014,6 +1023,7 @@ public class Slate extends Activity implements OnTouchListener,
 			// Toast.LENGTH_SHORT).show();
 			updatePagesInfo();
 			break;
+			
 		// delete page
 		case 16:
 			if (noOfPages == 1) {
@@ -1021,20 +1031,30 @@ public class Slate extends Activity implements OnTouchListener,
 				// "You have only one page. It can't be deleted.",
 				// Toast.LENGTH_SHORT).show();
 			} else {
-				noOfPages--;
-				pointsToDraw.remove(pageNo);
-				if (pageNo != 0) {
-					pageNo--;
-					// Toast.makeText(this, "Page " + (pageNo+2) +
-					// " has been deleted successfully.",
-					// Toast.LENGTH_SHORT).show();
-				} else {
-					// Toast.makeText(this, "Page " + (pageNo+1) +
-					// " has been deleted successfully.",
-					// Toast.LENGTH_SHORT).show();
-				}
+				new AlertDialog.Builder(this)
+				.setMessage("Delete the current page?")
+				.setCancelable(false)
+				.setPositiveButton("Yes",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								noOfPages--;
+								pointsToDraw.remove(pageNo);
+								if (pageNo != 0) {
+									pageNo--;
+									// Toast.makeText(this, "Page " + (pageNo+2) +
+									// " has been deleted successfully.",
+									// Toast.LENGTH_SHORT).show();
+								} else {
+									// Toast.makeText(this, "Page " + (pageNo+1) +
+									// " has been deleted successfully.",
+									// Toast.LENGTH_SHORT).show();
+								}
+								updatePagesInfo();
+							}
+						}).setNegativeButton("No", null).show();
+				
 			}
-			updatePagesInfo();
+			
 			break;
 
 		// help
