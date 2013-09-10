@@ -12,7 +12,7 @@ to replace the handheld slate and chalk. The application caters to all age group
 Installation
 ------------------
 
-#. Download the latest proxyMITY-WiFi.apk from `here
+#. Download the latest DiaSlate.apk from `here
    <http://www.it.iitb.ac.in/AakashApps/repo/DiaSlate.apk>`_ and
    install it on your Aakash.
 
